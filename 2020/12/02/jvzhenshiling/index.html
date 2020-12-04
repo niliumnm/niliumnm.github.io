@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: blog新人 | 二月 的Blog</title>
+  <title>LC 矩阵置零 | 二月 的Blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -59,7 +59,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -167,78 +167,109 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>每一个不曾起舞的日子都是对生命的辜负。</p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2020/12/04/gErrorSolve/">gErrorSolve</a></h4>
-                            
-                            <p><time datetime="2020-12-04T03:17:50.000Z"><a href="/2020/12/04/gErrorSolve/">2020-12-04</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2020/12/01/ganXiang-0/">自己的一点感想</a></h4>
-                            
-                            <p><time datetime="2020-12-01T09:25:37.000Z"><a href="/2020/12/01/ganXiang-0/">2020-12-01</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2020-12-02T11:04:02.000Z" itemprop="datePublished">
+          2020-12-02
+      </time>
+    
+</span>
+                <h1>LC 矩阵置零</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p><a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-medium/xvmy42/">原链接</a></p>
+<h1 id="初见"><a href="#初见" class="headerlink" title="初见"></a>初见</h1><p>​    暴力出奇迹，直接遍历所有的数，发现有0就把所在的行和列都变成0</p>
+<p>​    不可以这么做，如把</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1,1,1],</span><br><span class="line">[1,0,1],</span><br><span class="line">[1,1,1]</span><br></pre></td></tr></table></figure>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>虽然还没想好写点什么，但是总觉得这里放句话比较和谐。</p>
+<p> 第一次遍历到就变成了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1,0,1],</span><br><span class="line">[0,0,0],</span><br><span class="line">[1,0,1]</span><br></pre></td></tr></table></figure>
+
+<p>，那么再遍历到第三列的时候，又会把刚刚扩充的0的行和列变为0</p>
+<h1 id="优化1"><a href="#优化1" class="headerlink" title="优化1"></a>优化1</h1><p>​    不妨记录出现0的行和列的位置，再设置一个函数把所在的行和列都置零</p>
+<p>​    额外空间的使用：分析不出来，应该小于O(mn)。介于O(m+n)和O(nm)之间</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
+<li>自己定义一个数据类型，储存一个i和一个j。</li>
+<li>新建一个vector&lt;myType&gt; 遍历整个数组把0的位置都储存进去</li>
+<li>定义个<code>void change(int i ,int j, vector&lt;myType&gt;V)</code>函数, 功能是把给定元素的行和列都变成0</li>
+</ol>
+<h3 id="开干-第一次编写"><a href="#开干-第一次编写" class="headerlink" title="开干 第一次编写"></a>开干 第一次编写</h3><p>更正：傻了<code>void change(int i ,int j, vector&lt;myType&gt;V)</code>没把题目的数组传进去，应该是<code>void change(int i,int j,vector&lt;myType&gt;V,vector&lt;vector&lt;int&gt;&gt;&amp;matrix)</code></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2020/12/02/xvmy42/" style="float: left;">
+        ← LC 矩阵置零
+    </a>
+    
+    
+    <a class="pull-right" href="/2020/12/01/SB-roommate/">
+        傻逼室友 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
