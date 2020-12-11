@@ -205,6 +205,100 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
+                    <h3><a href="/2020/12/03/nandK2/">是存在K个奇数的和为n</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-12-03T07:57:04.000Z" itemprop="datePublished">
+          2020-12-03
+      </time>
+    
+    
+    | 
+    <a href='/tags/题解/'>题解</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        测试描述
+
+题目：
+给一个n一个k，是否存在k个奇数，使他们的和为n
+只需判断存在即可
+
+初见对这个我希望不大，闫学诚说要用奇偶性。
+推理
+两个奇数的和依然是偶数
+两个偶数的和依然是奇数
+1是奇数，理论上给的K够大，一定可以
+思路1全部用1填充，n个 1 的和为n 直接1*K 
+如果1*n小于目标值，则试3*K
+找到了正好，如果没找到就继续增加，直到找到以一个m，使得(m-1)*K&lt;n&lt;m*K
+然后看所得的m*k和目标的n相
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/12/03/nandK2/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/12/02/xvmy42/">LC 矩阵置零</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-12-02T11:04:02.000Z" itemprop="datePublished">
+          2020-12-02
+      </time>
+    
+    
+    | 
+    <a href='/tags/题解/'>题解</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        原链接
+初见​    暴力出奇迹，直接遍历所有的数，发现有0就把所在的行和列都变成0
+​    不可以这么做，如把
+123[1,1,1],[1,0,1],[1,1,1]
+
+ 第一次遍历到就变成了
+123[1,0,1],[0,0,0],[1,0,1]
+
+，那么再遍历到第三列的时候，又会把刚刚扩充的0的行和列变为0
+优化1​    不妨记录出现0的行和列的位置，再设置一个函数把所在的行和列都置零
+​    额外空间的使用：分析不出来，应该小
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/12/02/xvmy42/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
                     <h3><a href="/2020/12/01/SB-roommate/">傻逼室友</a></h3>
                     <span>
                         <span class="post-meta">
